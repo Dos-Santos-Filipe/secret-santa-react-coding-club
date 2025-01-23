@@ -1,0 +1,28 @@
+import { useState } from "react";
+import { Button } from "./Button";
+
+interface Props {
+  onClick: (participant: string) => void;
+}
+export const Participant = ({ onClick }: Props ) => {
+
+  const [newParticipant, setNewParticipant] = useState("");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+   setNewParticipant(event.target.value);
+  }
+
+  const handleAdd = () => {
+    if (newParticipant.trim() !== "")
+      onClick(newParticipant);
+      setNewParticipant("");
+    } 
+
+  return (
+    <div>
+        <p>Insert a participant</p>
+        <input type="text" onChange={handleChange} />
+        <Button onClick={handleAdd}>Add</Button>
+    </div>
+  )
+}
