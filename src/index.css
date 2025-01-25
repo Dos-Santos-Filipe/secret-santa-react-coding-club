@@ -49,3 +49,9 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+.participant {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
