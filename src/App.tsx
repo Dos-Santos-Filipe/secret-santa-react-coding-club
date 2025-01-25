@@ -2,28 +2,26 @@ import { useState, useEffect } from "react";
 import { Button } from "./components/Button";
 import { Participant } from "./components/Participant";
 
-
-
 function App() {
-
   const [participants, setParticipants] = useState<string[]>([]);
 
   useEffect(() => {
     console.log(participants);
   }, [participants]);
-  
+
   const addParticipant = (newParticipant: string) => {
+    if (participants.includes(newParticipant)) return;
+
     setParticipants([...participants, newParticipant]);
-  }
+  };
 
   return (
     <>
-      
       <h1>Secret santa</h1>
-      
+
       {/* Component to add participants */}
-      
-      <Participant onClick={addParticipant}/>
+
+      <Participant onClick={addParticipant} />
 
       <div>
         <div>
@@ -73,13 +71,11 @@ function App() {
                 <p>Giver: Reciver</p>
               </div>
             </li>
-           
           </ul>
         </div>
       </div>
-    
     </>
-  )
+  );
 }
 
-export default App
+export default App;
