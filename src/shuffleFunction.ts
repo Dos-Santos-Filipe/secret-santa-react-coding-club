@@ -1,5 +1,3 @@
-const participants = ["Andre", "Brad", "Claudia", "Denise", "Emily", "Fabby"];
-
 const fisherYatesShuffle = (participants:string[]) => {
     const shuffledParticipants = [...participants];
     const length = shuffledParticipants.length;
@@ -12,7 +10,7 @@ const fisherYatesShuffle = (participants:string[]) => {
     return shuffledParticipants;
 };
 
-function secretSanta(participants: string[]): void{
+ export const secretSanta = (participants: string[]): { giver: string; receiver: string }[] => {
   const shuffledList = fisherYatesShuffle(participants);
   const result = [];
 
@@ -22,7 +20,6 @@ function secretSanta(participants: string[]): void{
     result.push({ giver, receiver });
   }
 
-  console.log(result);
+  return result;
 }
 
-secretSanta(participants);

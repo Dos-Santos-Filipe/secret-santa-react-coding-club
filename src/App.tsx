@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "./components/Button";
 import { Participant } from "./components/Participant";
+import { secretSanta } from "./shuffleFunction";
 
 function App() {
   const [participants, setParticipants] = useState<string[]>([]);
+  const [result, setResult] = useState<{ giver: string; receiver: string }[]>(
+    []
+  );
 
   useEffect(() => {
     console.log(participants);
@@ -16,11 +20,19 @@ function App() {
   };
 
   const removeParticipant = (participant: string) => {
-    setParticipants(participants.filter(item => item !== participant));
+    setParticipants(participants.filter((item) => item !== participant));
   };
 
   const resetList = () => {
     setParticipants([]);
+  };
+
+  const secretSantaGame = () => {
+    if (participants.length >= 4 && participants.length % 2 === 0) {
+      setResult(secretSanta(participants));
+    } else {
+      alert("Not enough participants");
+    }
   };
 
   return (
@@ -38,7 +50,9 @@ function App() {
             {participants.map((participant): JSX.Element => {
               return (
                 <li key={participant} className="participant">
-                  <Button onClick={() => removeParticipant(participant)}>X</Button>
+                  <Button onClick={() => removeParticipant(participant)}>
+                    X
+                  </Button>
                   <p>{participant}</p>
                 </li>
               );
@@ -47,37 +61,25 @@ function App() {
         </div>
 
         <div>
-          <button>Draw</button>
+          <Button onClick={secretSantaGame}>Draw</Button>
           <Button onClick={resetList}>Reset</Button>
         </div>
 
         <div>
           <h1>Final List</h1>
           <ul>
-            <li>
-              <div>
-                <button>X</button>
-                <p>Giver: Reciver</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <button>X</button>
-                <p>Giver: Reciver</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <button>X</button>
-                <p>Giver: Reciver</p>
-              </div>
-            </li>
-            <li>
-              <div>
-                <button>X</button>
-                <p>Giver: Reciver</p>
-              </div>
-            </li>
+            {result.map(({ giver, receiver }) => {
+              return (
+                <li>
+                  <div>
+                    <p>
+                      <strong>{giver}</strong> gives to{" "}
+                      <strong>{receiver}</strong>
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
