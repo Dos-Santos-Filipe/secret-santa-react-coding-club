@@ -17,14 +17,15 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  max-width: 1440px;
+  min-height: 100vh;;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 3em;
+  margin: 0 auto;
 }
 
 ul {
@@ -36,22 +37,71 @@ button {
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 400;
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: #10565f;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.listsContainer {
+  display: flex;
+  gap: 50px;
+}
+
 .participant {
   display: flex;
   gap: 1rem;
   align-items: center;
+}
+
+.removeBtn {
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  background-color: rgb(155, 20, 20);
+}
+.removeBtn:hover {
+  background-color: #ff6b6b;
+}
+
+.editBtn {
+  width: 45px;
+  height: 25px;
+  padding: 0;
+  background-color: rgb(10, 34, 155);
+}
+.editBtn:hover {
+  background-color: #55aef6;
+}
+
+.mainBtns {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-evenly;
+}
+
+.mainBtns button {
+  width: 200px;
+}
+
+.mainBtns button:first-child {
+  background-color: rgb(20, 155, 10);
+}
+.mainBtns button:first-child:hover {
+  background-color: #6bf655;
+}
+
+.mainBtns button:last-child {
+  background-color: rgb(155, 20, 20);
+}
+.mainBtns button:last-child:hover {
+  background-color: #ff6b6b;
 }

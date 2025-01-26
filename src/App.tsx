@@ -8,6 +8,7 @@ function App() {
   const [result, setResult] = useState<{ giver: string; receiver: string }[]>(
     []
   );
+  const [edit, setEdit] = useState<string>("");
 
   useEffect(() => {
     console.log(participants);
@@ -23,12 +24,24 @@ function App() {
     setParticipants(participants.filter((item) => item !== participant));
   };
 
+  const editParticipant = (participant: string) => {
+    const editedParticipant = prompt("Edit participant") ?? "";
+    if (editedParticipant === "") return;
+
+    setParticipants(
+      participants.map((item) =>
+        item === participant ? editedParticipant : item
+      )
+    );
+  };
+
   const resetList = () => {
     setParticipants([]);
+    setResult([]);
   };
 
   const secretSantaGame = () => {
-    if (participants.length >= 4 && participants.length % 2 === 0) {
+    if (participants.length >= 3) {
       setResult(secretSanta(participants));
     } else {
       alert("Not enough participants");
@@ -43,17 +56,20 @@ function App() {
 
       <Participant onClick={addParticipant} />
 
-      <div>
+      <div className="listsContainer">
         <div>
-          <h1>List of participants</h1>
+          <h2>List of participants</h2>
           <ul>
             {participants.map((participant): JSX.Element => {
               return (
                 <li key={participant} className="participant">
-                  <Button onClick={() => removeParticipant(participant)}>
+                  <Button className="removeBtn" onClick={() => removeParticipant(participant)}>
                     X
                   </Button>
                   <p>{participant}</p>
+                  <Button className="editBtn" onClick={() => editParticipant(participant)}>
+                    Edit
+                  </Button>
                 </li>
               );
             })}
@@ -61,12 +77,7 @@ function App() {
         </div>
 
         <div>
-          <Button onClick={secretSantaGame}>Draw</Button>
-          <Button onClick={resetList}>Reset</Button>
-        </div>
-
-        <div>
-          <h1>Final List</h1>
+          <h2>Final List</h2>
           <ul>
             {result.map(({ giver, receiver }) => {
               return (
@@ -82,6 +93,11 @@ function App() {
             })}
           </ul>
         </div>
+      </div>
+
+      <div className="mainBtns">
+        <Button onClick={secretSantaGame}>Draw</Button>
+        <Button onClick={resetList}>Reset</Button>
       </div>
     </>
   );
