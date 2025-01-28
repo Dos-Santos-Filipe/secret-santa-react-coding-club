@@ -49,10 +49,8 @@ function App() {
   };
 
   return (
-    <>
+    <div className="app">
       <h1>Secret santa</h1>
-
-      {/* Component to add participants */}
 
       <Participant onClick={addParticipant} />
 
@@ -63,11 +61,17 @@ function App() {
             {participants.map((participant): JSX.Element => {
               return (
                 <li key={participant} className="participant">
-                  <Button className="removeBtn" onClick={() => removeParticipant(participant)}>
+                  <Button
+                    className="removeBtn"
+                    onClick={() => removeParticipant(participant)}
+                  >
                     X
                   </Button>
                   <p>{participant}</p>
-                  <Button className="editBtn" onClick={() => editParticipant(participant)}>
+                  <Button
+                    className="editBtn"
+                    onClick={() => editParticipant(participant)}
+                  >
                     Edit
                   </Button>
                 </li>
@@ -99,7 +103,7 @@ function App() {
         <Button onClick={secretSantaGame}>Draw</Button>
         <Button onClick={resetList}>Reset</Button>
       </div>
-    </>
+    </div>
   );
 }
 

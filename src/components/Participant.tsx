@@ -23,7 +23,7 @@ export const Participant = ({ onClick }: Props) => {
   };
 
   return (
-    <div>
+    <div className="participant">
       <p>Insert a participant</p>
       <input
         type="text"
@@ -31,7 +31,9 @@ export const Participant = ({ onClick }: Props) => {
         onChange={handleChange}
         onKeyDown={handleKeyPress}
       />
-      <Button onClick={handleAdd}>Add</Button>
+      <Button className="addBtn" onClick={handleAdd}>
+        Add
+      </Button>
     </div>
   );
 };
